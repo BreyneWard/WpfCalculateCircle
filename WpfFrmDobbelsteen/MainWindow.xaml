@@ -1,0 +1,17 @@
+﻿<Window x:Class="WpfFrmDobbelsteen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfFrmDobbelsteen"
+        mc:Ignorable="d"
+        Title="FrmDobbelsteen" FontSize="20" Height="150" Width="200">
+    <Grid>
+        <StackPanel>
+            <Button Height="45" Content="Gooien" HorizontalAlignment="Stretch" Margin="5,5,5,5" Click="Button_Click"/>
+            <TextBlock Height="30" x:Name="tbFirstNumber" Margin="5,0,5,5" HorizontalAlignment="Stretch" Background="#FF1D1298" />
+            <TextBlock Height="30" x:Name="tbSecondNumber" Margin="5,0,5,5" HorizontalAlignment="Stretch" Background="#FF8C0C0C"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

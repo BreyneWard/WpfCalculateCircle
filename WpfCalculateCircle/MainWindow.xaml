@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfCalculateCircle.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfCalculateCircle"
+        mc:Ignorable="d"
+        Title="MainWindow" FontSize="30" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+        <StackPanel Orientation="Horizontal">
+                
+                <Label Content="Straal" HorizontalAlignment="Left" Margin="5" />
+            <TextBox Name="txtInput" Width="150" HorizontalAlignment="Center" BorderBrush="#FF2E4280" Margin="15,15,
+                     15,15" TextChanged="txtInput_TextChanged"/>
+        </StackPanel>
+        
+            <Button Content="Bereken" HorizontalAlignment="Stretch" Click="Button_Click"/>
+            <TextBlock Name="tbResult" Height="100"/>
+
+        </StackPanel>
+    
+
+    </Grid>
+</Window>
