@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TreinenLijst>
+  <trein>
+    <kentekennr>9</kentekennr>
+    <bestemming>Hasselt</bestemming>
+    <maxAantalPassagiers>750</maxAantalPassagiers>
+    <vertrekNaXSeconden>50</vertrekNaXSeconden>
+  </trein>
+  <trein>
+    <kentekennr>10</kentekennr>
+    <bestemming>Leuven</bestemming>
+    <maxAantalPassagiers>1000</maxAantalPassagiers>
+    <vertrekNaXSeconden>20</vertrekNaXSeconden>
+  </trein>
+  <trein>
+    <kentekennr>11</kentekennr>
+    <bestemming>Leuven</bestemming>
+    <maxAantalPassagiers>500</maxAantalPassagiers>
+    <vertrekNaXSeconden>40</vertrekNaXSeconden>
+  </trein>
+  <trein>
+    <kentekennr>21</kentekennr>
+    <bestemming>Gent</bestemming>
+    <maxAantalPassagiers>500</maxAantalPassagiers>
+    <vertrekNaXSeconden>15</vertrekNaXSeconden>
+  </trein>
+  <trein>
+    <kentekennr>12</kentekennr>
+    <bestemming>Lier</bestemming>
+    <maxAantalPassagiers>750</maxAantalPassagiers>
+    <vertrekNaXSeconden>30</vertrekNaXSeconden>
+  </trein>
+</TreinenLijst> 
