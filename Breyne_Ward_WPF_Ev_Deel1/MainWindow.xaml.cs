@@ -47,8 +47,8 @@ namespace Breyne_Ward_WPF_Ev_Deel1
                 XmlDocument doc = new XmlDocument();
                 doc.Load("Treinen.xml");
                 treinNodes = doc.SelectNodes("//trein");
-                foreach (XmlNode node in treinNodes)
-                {
+                //foreach (XmlNode node in treinNodes)
+                //{
                     // Hier zat foutje in omdat mijn xml aparte xml tags gebruikte en niet alles als attribuut onder de trein tag zat, vermoed ik
                     // Manier hieronder werkte dan wel
                     //
@@ -73,7 +73,7 @@ namespace Breyne_Ward_WPF_Ev_Deel1
                         loadedTreinen.Add(trein);
                     }
 
-                }
+                
             }
             catch (Exception ex)
             {
