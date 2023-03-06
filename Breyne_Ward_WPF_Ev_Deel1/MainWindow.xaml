@@ -6,8 +6,43 @@
         xmlns:local="clr-namespace:Breyne_Ward_WPF_Ev_Deel1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <!--<Grid>
+        --><!--//test to print out loadedTreinen list-->
+    <!--<Button x:Name="btn_loadxml" Content="laad xml" Click="btn_loadxml_Click"/>-->
+    <!--
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        
+        <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+    </Grid>-->
     <Grid>
-        <Button x:Name="btn_loadxml" Content="laad xml" Click="btn_loadxml_Click"/>
-
+        <!--<Button x:Name="btn_loadxml" Content="laad xml" Click="btn_loadxml_Click"/>-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="Auto"/>
+            <RowDefinition  Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Overzicht:" Grid.Column="1" Grid.ColumnSpan="2" FontSize="30"/>
+        <ListView Grid.Row="1" Grid.Column="2" x:Name="lvOutput" Margin="5,5,5,5"/>
+        <StackPanel Name="stack1" Grid.Row="1" Grid.Column="1">
+            <GroupBox Header="Order By">
+                <StackPanel>
+                    <RadioButton Content="Line" Margin="5"/>
+                    <RadioButton Content="Destination" Margin="5"/>
+                </StackPanel>
+            </GroupBox>
+            <TextBlock Text="Spoor 1:" FontSize="20" Margin="5,5,5,5"/>
+            <TextBlock x:Name="tbSpoor1" Margin="5,5,5,5" Text="Spoor 1 is leeg" Background="Green" />
+            <TextBlock Text="Spoor 2:" FontSize="20" Margin="5,5,5,5"/>
+            <TextBlock x:Name="tbSpoor2" Margin="5,5,5,5" Text="Spoor 2 is leeg" Background="Green"/>
+            <TextBlock Text="Spoor 3:" FontSize="20" Margin="5,5,5,5"/>
+            <TextBlock x:Name="tbSpoor3" Margin="5,5,5,5" Text="Spoor 3 is leeg" Background="Green"/>
+        </StackPanel>
     </Grid>
 </Window>

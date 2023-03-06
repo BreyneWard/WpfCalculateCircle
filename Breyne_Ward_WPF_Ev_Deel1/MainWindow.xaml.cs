@@ -36,6 +36,8 @@ namespace Breyne_Ward_WPF_Ev_Deel1
             InitializeComponent();
             //SerializeTreinenToXML();
             DeserializeTreinenXML();
+            tbSpoor1.Text = "Spoor 1 is bezet.";
+            tbSpoor1.Background = Brushes.Red;
         }
 
         
@@ -47,21 +49,7 @@ namespace Breyne_Ward_WPF_Ev_Deel1
                 XmlDocument doc = new XmlDocument();
                 doc.Load("Treinen.xml");
                 treinNodes = doc.SelectNodes("//trein");
-                //foreach (XmlNode node in treinNodes)
-                //{
-                    // Hier zat foutje in omdat mijn xml aparte xml tags gebruikte en niet alles als attribuut onder de trein tag zat, vermoed ik
-                    // Manier hieronder werkte dan wel
-                    //
-                    //TreinPlus trein = new TreinPlus
-                    //{
-                    //    KentekenNummer = int.Parse(node.Attributes["kentekennr"].Value),
-                    //    Bestemming = node.Attributes["bestemming"].Value,
-                    //    MaxAantalPassagiers = int.Parse(node.Attributes["maxAantalPassagiers"].Value),
-                    //    VertrekNaXSeconden = int.Parse(node.Attributes["vertrekNaXSeconden"].Value)
-                    //};
-
-                   
-
+                
                     foreach (XmlNode treinNode in treinNodes)
                     {
                         TreinPlus trein = new TreinPlus();
