@@ -79,6 +79,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Spoor.cs" />
     <Compile Include="Trein.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>

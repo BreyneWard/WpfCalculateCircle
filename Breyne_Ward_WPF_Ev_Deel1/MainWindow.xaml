@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
     </Grid>-->
     <Grid>
-        <!--<Button x:Name="btn_loadxml" Content="laad xml" Click="btn_loadxml_Click"/>-->
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="auto"/>
@@ -31,6 +31,7 @@
         <TextBlock Text="Overzicht:" Grid.Column="1" Grid.ColumnSpan="2" FontSize="30"/>
         <ListView Grid.Row="1" Grid.Column="2" x:Name="lvOutput" Margin="5,5,5,5"/>
         <StackPanel Name="stack1" Grid.Row="1" Grid.Column="1">
+            <Button x:Name="btn_loadxml" Content="laad xml" Click="btn_loadxml_Click"/>
             <GroupBox Header="Order By">
                 <StackPanel>
                     <RadioButton Content="Line" Margin="5"/>
