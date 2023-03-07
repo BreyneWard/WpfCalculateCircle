@@ -84,6 +84,7 @@ namespace Breyne_Ward_WPF_Ev_Deel1
             DeserializeTreinenXML();
             tbSpoor1.Text = "Spoor 1 is bezet.";
             tbSpoor1.Background = Brushes.Red;
+            lvTreinen.Items.Add(tbSpoor1.Text);
         }
 
 

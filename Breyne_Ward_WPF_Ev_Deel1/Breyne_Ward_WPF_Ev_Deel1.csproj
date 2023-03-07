@@ -65,6 +65,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\ControleKamer.cs" />
+    <Compile Include="Classes\DataManager.cs" />
+    <Compile Include="Classes\SpoorComparer.cs" />
     <Compile Include="DataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
