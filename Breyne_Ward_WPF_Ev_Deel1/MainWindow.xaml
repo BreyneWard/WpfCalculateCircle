@@ -39,8 +39,8 @@
             <Button x:Name="btn_loadxml" Content="laad xml" Click="btn_loadxml_Click"/>
             <GroupBox Header="Order By">
                 <StackPanel>
-                    <RadioButton Content="Bestemming" Margin="5" IsChecked="True"/>
-                    <RadioButton Content="Spoor" Margin="5"/>
+                    <RadioButton Content="Bestemming" Margin="5" IsChecked="True" Checked="rbBestemming_Check"/>
+                    <RadioButton Content="Spoor" Margin="5" Checked="rbSpoor_Check"/>
                 </StackPanel>
             </GroupBox>
             <TextBlock Text="Spoor 1:" FontSize="20" Margin="5,5,5,5"/>

@@ -30,6 +30,7 @@ namespace Breyne_Ward_WPF_Ev_Deel1
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         private List<Spoor> _sporenLijst;
 
         public List<Spoor> LijstSporen
@@ -51,44 +52,9 @@ namespace Breyne_Ward_WPF_Ev_Deel1
 
         private DispatcherTimer _timer1;
 
+        private List<TreinPlus> loadedTreinen = new List<TreinPlus>();
 
-        private void InkomendeTreinen() { }
-
-        private void rbBestemming_Checked(object sender, RoutedEventArgs e) { }
-        private void rbSpoor_Checked(object sender, RoutedEventArgs e) { }
-        private void RefreshTextBox() { }
-        private void Spoor1_onSpoorStatus(Color kleur, string scherm) { }
-        private void Spoor2_onSpoorStatus(Color kleur, string scherm) { }
-        private void Spoor3_onSpoorStatus(Color kleur, string scherm) { }
-        private void SporenVanDitTreinStationHardCoded() { }
-        private void timer1_Tick(object sender, EventArgs e) { }
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //MessageBox.Show("Loaded");
-        }
-
-
-
-
-
-
-        //List<Trein> treinen;
-        List<TreinPlus> loadedTreinen = new List<TreinPlus>();
-
-
-        public MainWindow()
-        {
-
-            InitializeComponent();
-            //SerializeTreinenToXML();
-            DeserializeTreinenXML();
-            tbSpoor1.Text = "Spoor 1 is bezet.";
-            tbSpoor1.Background = Brushes.Red;
-            lvTreinen.Items.Add(tbSpoor1.Text);
-        }
-
-
-        public void DeserializeTreinenXML()
+        private void InkomendeTreinen() 
         {
             XmlNodeList treinNodes;
             try
@@ -107,18 +73,92 @@ namespace Breyne_Ward_WPF_Ev_Deel1
 
                     loadedTreinen.Add(trein);
                 }
-
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error loading Treinen.xml: " + ex.Message);
             }
+        }
+
+        
+        
+        private void RefreshTextBox() { }
+        private void Spoor1_onSpoorStatus(Color kleur, string scherm) 
+        {
+            SolidColorBrush brush = new SolidColorBrush(kleur);
+            tbSpoor1.Background = brush;
+            tbSpoor1.Text = scherm;
+        }
+        private void Spoor2_onSpoorStatus(Color kleur, string scherm) 
+        {
+            SolidColorBrush brush = new SolidColorBrush(kleur);
+            tbSpoor2.Background = brush;
+            tbSpoor2.Text = scherm;
+
+        }
+        private void Spoor3_onSpoorStatus(Color kleur, string scherm)
+        {
+            SolidColorBrush brush = new SolidColorBrush(kleur);
+            tbSpoor3.Background = brush;
+            tbSpoor3.Text = scherm;
+        }
+        private void SporenVanDitTreinStationHardCoded() 
+        {
+            LijstSporen = new List<Spoor>();
+            Spoor spoor1 = new Spoor(1, true);
+            Spoor spoor2 = new Spoor(2, true);
+            Spoor spoor3 = new Spoor(3, true);
+            LijstSporen.Add(spoor1);
+            LijstSporen.Add(spoor2);
+            LijstSporen.Add(spoor3);
+    
+            Color green = Colors.Green;
+            Spoor1_onSpoorStatus(green, "Spoor 1 is leeg.");
+            Spoor2_onSpoorStatus(green, "Spoor 2 is leeg.");
+            Spoor3_onSpoorStatus(green, "Spoor 3 is leeg.");
+
+
+        }
+        private void timer1_Tick(object sender, EventArgs e) { }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("Loaded");
+        }
+        private void rbBestemming_Check(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void rbSpoor_Check(object sender, RoutedEventArgs e)
+        {
+
+        }
 
 
 
 
 
+
+        
+
+
+        public MainWindow()
+        {
+
+            InitializeComponent();
+            InkomendeTreinen();
+            SporenVanDitTreinStationHardCoded();
+
+           // DeserializeTreinenXML();
+           //tbSpoor1.Text = "Spoor 1 is bezet.";
+           // tbSpoor1.Background = Brushes.Red;
+            //lvTreinen.Items.Add(tbSpoor1.Text);
+        }
+
+
+        public void DeserializeTreinenXML()
+        {
+            
             // path to xml
             //string path = Combine(CurrentDirectory, "Treinen.xml");
 
@@ -151,13 +191,15 @@ namespace Breyne_Ward_WPF_Ev_Deel1
             }
         }
 
+       
+
         //not asked
         //private void Window_ContentRendered(object sender, EventArgs e)
         //{
         //    MessageBox.Show("ContentRendered");
         //}
 
-        
+
 
 
 
