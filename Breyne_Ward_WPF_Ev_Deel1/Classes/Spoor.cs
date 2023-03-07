@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Breyne_Ward_WPF_Ev_Deel1
 {
 	// todo delegate toe te voegen
-    internal class Spoor
+    public partial class Spoor
     {
 		public Spoor() { }
 		public Spoor(int spoornr, bool vrij)
@@ -38,6 +38,9 @@ namespace Breyne_Ward_WPF_Ev_Deel1
 			get { return _scherm; }
 			set { _scherm = value; }
 		}
+
+		//todo delegate?
+		//public delegate SpoorStatusHandler onSpoorStatus; 
 
 	}
 }

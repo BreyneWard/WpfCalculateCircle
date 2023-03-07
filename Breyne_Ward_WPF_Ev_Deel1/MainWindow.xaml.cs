@@ -28,11 +28,33 @@ namespace Breyne_Ward_WPF_Ev_Deel1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<Spoor> _sporenLijst;
+
+        public List<Spoor> LijstSporen
+        {
+            get { return _sporenLijst; }
+            set { _sporenLijst = value; }
+        }
+
+        private List<Trein> _treinenlijst;
+
+        public List<Trein> LijstTreinen
+        {
+            get { return _treinenlijst; }
+            set { _treinenlijst = value; }
+        }
+
+        private ControleKamer:
+
+        
+
         //List<Trein> treinen;
         List<TreinPlus> loadedTreinen = new List<TreinPlus>();
+        
 
         public MainWindow()
         {
+
             InitializeComponent();
             //SerializeTreinenToXML();
             DeserializeTreinenXML();
@@ -40,7 +62,7 @@ namespace Breyne_Ward_WPF_Ev_Deel1
             tbSpoor1.Background = Brushes.Red;
         }
 
-        
+
         public void DeserializeTreinenXML()
         {
             XmlNodeList treinNodes;
@@ -49,28 +71,28 @@ namespace Breyne_Ward_WPF_Ev_Deel1
                 XmlDocument doc = new XmlDocument();
                 doc.Load("Treinen.xml");
                 treinNodes = doc.SelectNodes("//trein");
-                
-                    foreach (XmlNode treinNode in treinNodes)
-                    {
-                        TreinPlus trein = new TreinPlus();
-                        trein.KentekenNummer = int.Parse(treinNode.SelectSingleNode("kentekennr").InnerText);
-                        trein.Bestemming = treinNode.SelectSingleNode("bestemming").InnerText;
-                        trein.MaxAantalPassagiers = int.Parse(treinNode.SelectSingleNode("maxAantalPassagiers").InnerText);
-                        trein.VertrekNaXSeconden = int.Parse(treinNode.SelectSingleNode("vertrekNaXSeconden").InnerText);
 
-                        loadedTreinen.Add(trein);
-                    }
+                foreach (XmlNode treinNode in treinNodes)
+                {
+                    TreinPlus trein = new TreinPlus();
+                    trein.KentekenNummer = int.Parse(treinNode.SelectSingleNode("kentekennr").InnerText);
+                    trein.Bestemming = treinNode.SelectSingleNode("bestemming").InnerText;
+                    trein.MaxAantalPassagiers = int.Parse(treinNode.SelectSingleNode("maxAantalPassagiers").InnerText);
+                    trein.VertrekNaXSeconden = int.Parse(treinNode.SelectSingleNode("vertrekNaXSeconden").InnerText);
 
-                
+                    loadedTreinen.Add(trein);
+                }
+
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error loading Treinen.xml: " + ex.Message);
             }
 
-            
 
-            
+
+
 
             // path to xml
             //string path = Combine(CurrentDirectory, "Treinen.xml");
@@ -103,6 +125,20 @@ namespace Breyne_Ward_WPF_Ev_Deel1
                     $"passagiers van: {tp.MaxAantalPassagiers} en vertrekt na {tp.VertrekNaXSeconden} seconden");
             }
         }
+
+        //not asked
+        //private void Window_ContentRendered(object sender, EventArgs e)
+        //{
+        //    MessageBox.Show("ContentRendered");
+        //}
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Loaded");
+        }
+
+
+
         // manual naar sql connecten, maar niet gebruikt.
         // try 
         //{	        
@@ -116,12 +152,12 @@ namespace Breyne_Ward_WPF_Ev_Deel1
         //}
 
 
-        
+
         //Entity framework gekoppeld geen idee of dit ok is
         // via NuGet Package manager: Install-Package Microsoft.EntityFramework geinstalleerd, dan een ADO.NET DATA entity model gekoppeld en hier optie database
         // first genomen, volgens ik gezien heb maakt dit een een databasecontext class aan die inherit van dbContext
         // nl. DataModel.Context.cs, deze dient dan geïnstantieerd  te worden om met database WardStationDB en tabel Trein te werken
         // maar dit moet ik nog verder uitwerken en proberen.
-       
+
     }
 }

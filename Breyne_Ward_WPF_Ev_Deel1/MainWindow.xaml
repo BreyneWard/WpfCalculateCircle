@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Breyne_Ward_WPF_Ev_Deel1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Trein Applicatie" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen" 
+        Loaded="Window_Loaded">
+        <!-- Tag before Loaded: ContentRendered="Window_ContentRendered"-->
+        
+        
     <!--<Grid>
         --><!--//test to print out loadedTreinen list-->
     <!--<Button x:Name="btn_loadxml" Content="laad xml" Click="btn_loadxml_Click"/>-->
@@ -34,8 +39,8 @@
             <Button x:Name="btn_loadxml" Content="laad xml" Click="btn_loadxml_Click"/>
             <GroupBox Header="Order By">
                 <StackPanel>
-                    <RadioButton Content="Line" Margin="5"/>
-                    <RadioButton Content="Destination" Margin="5"/>
+                    <RadioButton Content="Bestemming" Margin="5" IsChecked="True"/>
+                    <RadioButton Content="Spoor" Margin="5"/>
                 </StackPanel>
             </GroupBox>
             <TextBlock Text="Spoor 1:" FontSize="20" Margin="5,5,5,5"/>
