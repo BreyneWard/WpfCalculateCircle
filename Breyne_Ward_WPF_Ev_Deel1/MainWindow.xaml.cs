@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Breyne_Ward_WPF_Ev_Deel1.Classes;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -15,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using System.Xml;
 using System.Xml.Serialization;
 using static System.Console;
@@ -44,13 +46,35 @@ namespace Breyne_Ward_WPF_Ev_Deel1
             set { _treinenlijst = value; }
         }
 
-        private ControleKamer:
+        private ControleKamer _mijnControleKamer;
+        private int _teller;
 
-        
+        private DispatcherTimer _timer1;
+
+
+        private void InkomendeTreinen() { }
+
+        private void rbBestemming_Checked(object sender, RoutedEventArgs e) { }
+        private void rbSpoor_Checked(object sender, RoutedEventArgs e) { }
+        private void RefreshTextBox() { }
+        private void Spoor1_onSpoorStatus(Color kleur, string scherm) { }
+        private void Spoor2_onSpoorStatus(Color kleur, string scherm) { }
+        private void Spoor3_onSpoorStatus(Color kleur, string scherm) { }
+        private void SporenVanDitTreinStationHardCoded() { }
+        private void timer1_Tick(object sender, EventArgs e) { }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show("Loaded");
+        }
+
+
+
+
+
 
         //List<Trein> treinen;
         List<TreinPlus> loadedTreinen = new List<TreinPlus>();
-        
+
 
         public MainWindow()
         {
@@ -132,10 +156,7 @@ namespace Breyne_Ward_WPF_Ev_Deel1
         //    MessageBox.Show("ContentRendered");
         //}
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Loaded");
-        }
+        
 
 
 

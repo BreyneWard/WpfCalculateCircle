@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Breyne_Ward_WPF_Ev_Deel1.Classes
 {
-    internal class DataManager
+    public partial class DataManager
     {
+        public int InsertTrein(Trein trein) { int a = 0; return a ; }
     }
 }
