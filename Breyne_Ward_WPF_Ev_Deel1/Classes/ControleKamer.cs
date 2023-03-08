@@ -20,7 +20,10 @@ namespace Breyne_Ward_WPF_Ev_Deel1.Classes
         // methods
         //constructors
         public ControleKamer() { }
-        public ControleKamer(List<Spoor> sporen) { }
+        public ControleKamer(List<Spoor> sporen) 
+        {
+            Sporen= sporen;
+        }
 
         public Trein ControleerSporen(Trein eenTrein) 
         {
