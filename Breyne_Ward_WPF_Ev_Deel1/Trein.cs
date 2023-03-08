@@ -10,7 +10,7 @@
 namespace Breyne_Ward_WPF_Ev_Deel1
 {
     using System;
-    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     
     public partial class Trein
     {
@@ -23,6 +23,5 @@ namespace Breyne_Ward_WPF_Ev_Deel1
         public int MaxAantalPassagiers { get; set; }
         public Nullable<decimal> TicketPrijs { get; set; }
         public Nullable<bool> ConducAanwezig { get; set; }
-        public Trein() { }
     }
 }

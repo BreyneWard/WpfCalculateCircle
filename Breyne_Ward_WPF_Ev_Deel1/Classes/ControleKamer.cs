@@ -22,7 +22,29 @@ namespace Breyne_Ward_WPF_Ev_Deel1.Classes
         public ControleKamer() { }
         public ControleKamer(List<Spoor> sporen) { }
 
-        public Trein ControleerSporen(Trein eenTrein) { return new Trein(); }
+        public Trein ControleerSporen(Trein eenTrein) 
+        {
+            foreach(Spoor sp in Sporen) 
+            {
+                if (sp.Vrij == true)
+                {
+                    eenTrein.SpoorNummer = sp.Spoornr;
+                    //sp.Vrij= false;
+                    //etc.
+                }
+                else
+                {
+                    // do nothing
+                }
+
+
+
+            }
+            
+            
+            
+            return eenTrein; 
+        }
         
 
 

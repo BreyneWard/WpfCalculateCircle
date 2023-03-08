@@ -117,9 +117,22 @@ namespace Breyne_Ward_WPF_Ev_Deel1
             Spoor2_onSpoorStatus(green, "Spoor 2 is leeg.");
             Spoor3_onSpoorStatus(green, "Spoor 3 is leeg.");
 
+        }
+        private void timer1_Tick(object sender, EventArgs e) 
+        {
+            //test Dispatcher timer on textblock tbSpoor1
+            //tbSpoor1.Text = DateTime.Now.ToLongTimeString();
+            
+            _mijnControleKamer = new ControleKamer(LijstSporen);
+            foreach(TreinPlus t in loadedTreinen)
+            {
+                Trein treinOpSpoor = new Trein();
+                treinOpSpoor = _mijnControleKamer.ControleerSporen(t);
+                //treinOpSpoor.
+            }
+            
 
         }
-        private void timer1_Tick(object sender, EventArgs e) { }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show("Loaded");
@@ -146,8 +159,24 @@ namespace Breyne_Ward_WPF_Ev_Deel1
         {
 
             InitializeComponent();
+
+            // Testing with DispatcherTimer bind it to textblock tbSpoor1 to fire after 12seconds
+            _teller = 12; // 12 sec
+            _timer1 = new DispatcherTimer();
+            _timer1.Interval = TimeSpan.FromSeconds(_teller);
+            _timer1.Tick += timer1_Tick;
+            _timer1.Start();
+
+
             InkomendeTreinen();
             SporenVanDitTreinStationHardCoded();
+           
+            
+
+
+            
+            
+            
 
            // DeserializeTreinenXML();
            //tbSpoor1.Text = "Spoor 1 is bezet.";
