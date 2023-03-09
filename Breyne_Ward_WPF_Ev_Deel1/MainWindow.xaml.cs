@@ -25,9 +25,7 @@ using static System.IO.Path;
 
 namespace Breyne_Ward_WPF_Ev_Deel1
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    
     public partial class MainWindow : Window
     {
         

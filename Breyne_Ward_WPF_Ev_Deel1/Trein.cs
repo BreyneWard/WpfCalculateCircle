@@ -23,5 +23,23 @@ namespace Breyne_Ward_WPF_Ev_Deel1
         public int MaxAantalPassagiers { get; set; }
         public Nullable<decimal> TicketPrijs { get; set; }
         public Nullable<bool> ConducAanwezig { get; set; }
+        public Trein() { }
+        public Trein(int kentekenNummer, string bestemming, int spoorNummer, DateTime vertrek, int? aantalPassagiers, int maxAantalPassagiers, decimal? ticketPrijs, bool? conducAanwezig)
+        {
+
+     
+            KentekenNummer = kentekenNummer;
+            Bestemming = bestemming;
+            SpoorNummer = spoorNummer;
+            Vertrek = vertrek;
+            AantalPassagiers = aantalPassagiers;
+            MaxAantalPassagiers = maxAantalPassagiers;
+            TicketPrijs = ticketPrijs;
+            ConducAanwezig = conducAanwezig;
+            
+            
+        }
+
+
     }
 }

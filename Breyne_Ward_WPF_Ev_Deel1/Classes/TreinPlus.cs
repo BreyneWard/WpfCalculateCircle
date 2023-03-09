@@ -7,7 +7,7 @@ using System.Windows.Threading;
 
 namespace Breyne_Ward_WPF_Ev_Deel1
 {
-    internal class TreinPlus : Trein
+    public class TreinPlus : Trein
     {
 		// Fields and properties
 		private int _aantalPassagiersOpgestapt;
@@ -41,20 +41,34 @@ namespace Breyne_Ward_WPF_Ev_Deel1
 		private Random wilgetal;
 
 
-        // Methods
+		// Methods
 		// Default constructor
-        public TreinPlus()
-        {
-        }
+		//public TreinPlus() { }
+
 
 		// Overloaded constructor
-        public TreinPlus(int eenKentekennr, string eenBestemming, int eenMaxAantalPassagiers,int eenVertrekNaXSeconden)
-        {
-            KentekenNummer = eenKentekennr;
-            Bestemming = eenBestemming;
-			MaxAantalPassagiers = eenMaxAantalPassagiers;
-            VertrekNaXSeconden = eenVertrekNaXSeconden;
+		public TreinPlus()
+		{
+				
+		}
+
+		public TreinPlus(int kentekenNummer, string bestemming, int spoorNummer, DateTime vertrek, int? aantalPassagiers, int maxAantalPassagiers, decimal? ticketPrijs, bool? conducAanwezig, int aantalPassagiersOpgestapt, int vertrekNaXSeconden, Spoor spoor, DispatcherTimer timer1, Random getal)
+		{
+            base.KentekenNummer = kentekenNummer;
+            base.Bestemming = bestemming;
+            base.SpoorNummer = spoorNummer;
+            base.Vertrek = vertrek;
+            base.AantalPassagiers = aantalPassagiers;
+            base.MaxAantalPassagiers = maxAantalPassagiers;
+            base.TicketPrijs = ticketPrijs;
+            base.ConducAanwezig = conducAanwezig;
+			AantalPassagiersOpgestapt = aantalPassagiersOpgestapt;
+			VertrekNaXSeconden = vertrekNaXSeconden;
+			Spoor = spoor;
+			Timer1 = timer1;
+			wilgetal = getal;
         }
+		
 
        
 
