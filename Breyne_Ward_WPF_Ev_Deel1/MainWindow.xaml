@@ -34,13 +34,14 @@
             <RowDefinition  Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Overzicht:" Grid.Column="1" Grid.ColumnSpan="2" FontSize="30"/>
-        <ListView Grid.Row="1" Grid.Column="2" x:Name="lvTreinen" Margin="5,5,5,5"/>
+        <TextBox Name="txtTreinen" Grid.Row="1" Grid.Column="2" Margin="5,5,5,5"/>
+        
         <StackPanel Name="stack1" Grid.Row="1" Grid.Column="1">
             <Button x:Name="btn_loadxml" Content="laad xml" Click="btn_loadxml_Click"/>
             <GroupBox Header="Order By">
                 <StackPanel>
-                    <RadioButton Content="Bestemming" Margin="5" IsChecked="True" Checked="rbBestemming_Check"/>
-                    <RadioButton Content="Spoor" Margin="5" Checked="rbSpoor_Check"/>
+                    <RadioButton x:Name="rbBestemming" Content="Bestemming" Margin="5" Checked="rbBestemming_Checked"/>
+                    <RadioButton x:Name="rbSpoor" Content="Spoor" Margin="5" Checked="rbSpoor_Checked"/>
                 </StackPanel>
             </GroupBox>
             <TextBlock Text="Spoor 1:" FontSize="20" Margin="5,5,5,5"/>

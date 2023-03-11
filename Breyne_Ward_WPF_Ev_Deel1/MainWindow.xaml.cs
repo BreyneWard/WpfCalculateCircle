@@ -29,7 +29,7 @@ namespace Breyne_Ward_WPF_Ev_Deel1
     public partial class MainWindow : Window
     {
         
-        private List<Spoor> _sporenLijst;
+        private List<Spoor> _sporenLijst = new List<Spoor>();
 
         public List<Spoor> LijstSporen
         {
@@ -37,7 +37,7 @@ namespace Breyne_Ward_WPF_Ev_Deel1
             set { _sporenLijst = value; }
         }
 
-        private List<Trein> _treinenlijst;
+        private List<Trein> _treinenlijst = new List<Trein> { };
 
         public List<Trein> LijstTreinen
         {
@@ -50,7 +50,7 @@ namespace Breyne_Ward_WPF_Ev_Deel1
 
         private DispatcherTimer _timer1;
 
-        private List<TreinPlus> loadedTreinen = new List<TreinPlus>();
+        //private List<TreinPlus> loadedTreinen = new List<TreinPlus>();
 
         private void InkomendeTreinen() 
         {
@@ -63,13 +63,13 @@ namespace Breyne_Ward_WPF_Ev_Deel1
 
                 foreach (XmlNode treinNode in treinNodes)
                 {
-                    TreinPlus trein = new TreinPlus();
+                    Trein trein = new Trein();
                     trein.KentekenNummer = int.Parse(treinNode.SelectSingleNode("kentekennr").InnerText);
                     trein.Bestemming = treinNode.SelectSingleNode("bestemming").InnerText;
                     trein.MaxAantalPassagiers = int.Parse(treinNode.SelectSingleNode("maxAantalPassagiers").InnerText);
                     trein.VertrekNaXSeconden = int.Parse(treinNode.SelectSingleNode("vertrekNaXSeconden").InnerText);
 
-                    loadedTreinen.Add(trein);
+                    LijstTreinen.Add(trein);
                 }
             }
             catch (Exception ex)
@@ -121,29 +121,71 @@ namespace Breyne_Ward_WPF_Ev_Deel1
         {
             //test Dispatcher timer on textblock tbSpoor1
             //tbSpoor1.Text = DateTime.Now.ToLongTimeString();
-
-            _mijnControleKamer = new ControleKamer(LijstSporen);
-            foreach (TreinPlus t in loadedTreinen)
+            try
             {
-                Trein treinOpSpoor = new Trein();
-                treinOpSpoor = _mijnControleKamer.ControleerSporen(t);
-                //treinOpSpoor.
+                Trein treinOpSpoor = LijstTreinen[0];
+                treinOpSpoor = _mijnControleKamer.ControleerSporen(treinOpSpoor);
+
+
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
             
-
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("Loaded");
+            // instantiate controlekamer
+            _mijnControleKamer = new ControleKamer(LijstSporen);
+            // xml to trein list
+            InkomendeTreinen();
+            // sporen to sporen list
+            SporenVanDitTreinStationHardCoded();
+
+            rbBestemming.IsChecked = true;
+
+            // Testing with DispatcherTimer bind it to textblock tbSpoor1 to fire after 12seconds
+
+            int counter = 12; // 12 sec
+            _timer1 = new DispatcherTimer();
+            _timer1.Interval = TimeSpan.FromSeconds(counter);
+            _timer1.Tick += timer1_Tick;
+            _timer1.Start();
+
         }
-        private void rbBestemming_Check(object sender, RoutedEventArgs e)
+        private void rbBestemming_Checked(object sender, RoutedEventArgs e)
         {
+            string displayTreinen = "";
+            //var sortedTrains = LijstTreinen.OrderBy(t => t.Bestemming);
 
+            //foreach (var train in sortedTrains)
+            //{
+            //   displayTreinen += $"Trein {train.KentekenNummer} to {train.Bestemming}{Environment.NewLine}";
+            //}
+
+            // group the trains by destination
+            var groupedTrains = LijstTreinen.GroupBy(t => t.Bestemming);
+
+            // iterate over each destination group and print out the destination followed by the trains that have that destination
+            foreach (var group in groupedTrains)
+            {
+                displayTreinen += $"{group.Key}:{Environment.NewLine}";
+                foreach (var train in group)
+                {
+                    displayTreinen += $"Trein {train.KentekenNummer} to {train.Bestemming}{Environment.NewLine}";
+                }
+                displayTreinen += Environment.NewLine;
+            }
+
+            txtTreinen.Text= displayTreinen;
         }
 
-        private void rbSpoor_Check(object sender, RoutedEventArgs e)
+        private void rbSpoor_Checked(object sender, RoutedEventArgs e)
         {
-
+            // Not implemented
         }
 
 
@@ -151,32 +193,15 @@ namespace Breyne_Ward_WPF_Ev_Deel1
 
 
 
-        
+
+
+
 
 
         public MainWindow()
         {
 
             InitializeComponent();
-
-            
-
-
-            InkomendeTreinen();
-            SporenVanDitTreinStationHardCoded();
-
-            // Testing with DispatcherTimer bind it to textblock tbSpoor1 to fire after 12seconds
-            
-            _teller = 12; // 12 sec
-            _timer1 = new DispatcherTimer();
-            _timer1.Interval = TimeSpan.FromSeconds(_teller);
-            _timer1.Tick += timer1_Tick;
-            _timer1.Start();
-
-
-
-
-
 
             // DeserializeTreinenXML();
             //tbSpoor1.Text = "Spoor 1 is bezet.";
@@ -185,42 +210,20 @@ namespace Breyne_Ward_WPF_Ev_Deel1
         }
 
 
-        public void DeserializeTreinenXML()
-        {
-            
-            // path to xml
-            //string path = Combine(CurrentDirectory, "Treinen.xml");
-
-            //using (FileStream xmlLoad = File.Open(path, FileMode.Open))
-            //{
-
-            //    // deserialize and cast the object graph into a List of Trein
-            //    XmlSerializer xs = new XmlSerializer(loadedTreinen.GetType());
-            //    List<Trein> loadedTreinen = xs.Deserialize(xmlLoad) as List<Trein>;
-
-            //    if (loadedTreinen is not null) //not possible in .NET framework 4.8??
-            //    {
-            //        foreach(Trein t in loadedTreinen) 
-            //        {
-            //            WriteLine("{}{}{}");
-            //        }
-            //    }
-            //}
-
-        }
-
         private void btn_loadxml_Click(object sender, RoutedEventArgs e)
         {
             //bevat nog bug -> maakt aantal keer zelfde treinen aan, maar leest nu wel mijn xml al uit 
             // intereer over loop en print values van treinen
-            foreach (TreinPlus tp in loadedTreinen)
+            foreach (Trein tp in LijstTreinen)
             {
                 MessageBox.Show($"Train {tp.KentekenNummer} gaat naar {tp.Bestemming} met een max aantal" +
                     $"passagiers van: {tp.MaxAantalPassagiers} en vertrekt na {tp.VertrekNaXSeconden} seconden");
             }
         }
 
-       
+        
+
+
 
         //not asked
         //private void Window_ContentRendered(object sender, EventArgs e)

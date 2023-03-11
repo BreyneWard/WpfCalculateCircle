@@ -7,7 +7,7 @@ using System.Windows.Threading;
 
 namespace Breyne_Ward_WPF_Ev_Deel1
 {
-    public class TreinPlus : Trein
+    public partial class Trein
     {
 		// Fields and properties
 		private int _aantalPassagiersOpgestapt;
@@ -47,30 +47,27 @@ namespace Breyne_Ward_WPF_Ev_Deel1
 
 
 		// Overloaded constructor
-		public TreinPlus()
+		public Trein()
 		{
 				
 		}
 
-		public TreinPlus(int kentekenNummer, string bestemming, int spoorNummer, DateTime vertrek, int? aantalPassagiers, int maxAantalPassagiers, decimal? ticketPrijs, bool? conducAanwezig, int aantalPassagiersOpgestapt, int vertrekNaXSeconden, Spoor spoor, DispatcherTimer timer1, Random getal)
+		public Trein(int kentekenNummer, string bestemming, int spoorNummer, DateTime vertrek, int? aantalPassagiers, int maxAantalPassagiers, decimal? ticketPrijs, bool? conducAanwezig, int aantalPassagiersOpgestapt, int vertrekNaXSeconden, Spoor spoor, DispatcherTimer timer1, Random getal)
 		{
-            base.KentekenNummer = kentekenNummer;
-            base.Bestemming = bestemming;
-            base.SpoorNummer = spoorNummer;
-            base.Vertrek = vertrek;
-            base.AantalPassagiers = aantalPassagiers;
-            base.MaxAantalPassagiers = maxAantalPassagiers;
-            base.TicketPrijs = ticketPrijs;
-            base.ConducAanwezig = conducAanwezig;
+            KentekenNummer = kentekenNummer;
+            Bestemming = bestemming;
+            SpoorNummer = spoorNummer;
+            Vertrek = vertrek;
+            AantalPassagiers = aantalPassagiers;
+            MaxAantalPassagiers = maxAantalPassagiers;
+            TicketPrijs = ticketPrijs;
+            ConducAanwezig = conducAanwezig;
 			AantalPassagiersOpgestapt = aantalPassagiersOpgestapt;
 			VertrekNaXSeconden = vertrekNaXSeconden;
 			Spoor = spoor;
 			Timer1 = timer1;
 			wilgetal = getal;
         }
-		
-
-       
 
         public void PassagiersStappenOp()
 		{
@@ -81,7 +78,7 @@ namespace Breyne_Ward_WPF_Ev_Deel1
 
         public override string ToString()
         {
-            return base.ToString();
+            return ToString();
         }
 
     }
