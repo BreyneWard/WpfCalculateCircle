@@ -1,4 +1,4 @@
-﻿using Breyne_Ward_WPF_Ev_Deel1.Classes;
+﻿using Breyne_Ward_WPF_Ev_Deel1;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -37,7 +37,7 @@ namespace Breyne_Ward_WPF_Ev_Deel1
             set { _sporenLijst = value; }
         }
 
-        private List<Trein> _treinenlijst = new List<Trein> { };
+        private List<Trein> _treinenlijst = new List<Trein>();
 
         public List<Trein> LijstTreinen
         {
@@ -46,9 +46,9 @@ namespace Breyne_Ward_WPF_Ev_Deel1
         }
 
         private ControleKamer _mijnControleKamer;
-        private int _teller;
+        private int _teller =0;
 
-        private DispatcherTimer _timer1;
+        private DispatcherTimer _timer1=new DispatcherTimer();
 
         //private List<TreinPlus> loadedTreinen = new List<TreinPlus>();
 
@@ -80,40 +80,78 @@ namespace Breyne_Ward_WPF_Ev_Deel1
 
         
         
-        private void RefreshTextBox() { }
+        private void RefreshTextBox() 
+        {
+            txtTreinen.Text = "";
+            if (rbBestemming.IsChecked == true)
+            {
+                LijstTreinen.Sort(new BestemmingComparer());
+                string bestemming = "";
+                foreach (Trein p in LijstTreinen)
+                {
+                    if (bestemming != p.Bestemming)
+                    {
+
+                        txtTreinen.Text += System.Environment.NewLine + p.Bestemming.ToUpper() + System.Environment.NewLine;
+                        bestemming = p.Bestemming;
+                    }
+                    txtTreinen.Text += p.ToString() + System.Environment.NewLine;
+                }
+            }
+            else
+            {
+                LijstTreinen.Sort(new SpoorComparer());
+                int spoornr = 0;
+                foreach (Trein p in LijstTreinen)
+                {
+                    if (spoornr != p.SpoorNummer)
+                    {
+                        txtTreinen.Text += System.Environment.NewLine + "SPOOR " + p.SpoorNummer.ToString().ToUpper() + ":" + System.Environment.NewLine;
+                        spoornr = p.SpoorNummer;
+                    }
+                    txtTreinen.Text += p.ToString() + System.Environment.NewLine;
+                }
+            }
+        }
         private void Spoor1_onSpoorStatus(Color kleur, string scherm) 
         {
             SolidColorBrush brush = new SolidColorBrush(kleur);
             tbSpoor1.Background = brush;
-            tbSpoor1.Text = scherm;
+            //tbSpoor1.Text = scherm;
+            tbSpoor1.Text = LijstSporen[0].Scherm;
         }
         private void Spoor2_onSpoorStatus(Color kleur, string scherm) 
         {
             SolidColorBrush brush = new SolidColorBrush(kleur);
             tbSpoor2.Background = brush;
-            tbSpoor2.Text = scherm;
+            tbSpoor2.Text = LijstSporen[1].Scherm;
 
         }
         private void Spoor3_onSpoorStatus(Color kleur, string scherm)
         {
             SolidColorBrush brush = new SolidColorBrush(kleur);
             tbSpoor3.Background = brush;
-            tbSpoor3.Text = scherm;
+            tbSpoor3.Text = LijstSporen[2].Scherm;
         }
         private void SporenVanDitTreinStationHardCoded() 
         {
-            LijstSporen = new List<Spoor>();
+            
             Spoor spoor1 = new Spoor(1, true);
+            spoor1.onSpoorStatus += Spoor1_onSpoorStatus;
             Spoor spoor2 = new Spoor(2, true);
+            spoor2.onSpoorStatus += Spoor2_onSpoorStatus;
             Spoor spoor3 = new Spoor(3, true);
-            LijstSporen.Add(spoor1);
-            LijstSporen.Add(spoor2);
-            LijstSporen.Add(spoor3);
-    
-            Color green = Colors.Green;
-            Spoor1_onSpoorStatus(green, "Spoor 1 is leeg.");
-            Spoor2_onSpoorStatus(green, "Spoor 2 is leeg.");
-            Spoor3_onSpoorStatus(green, "Spoor 3 is leeg.");
+            spoor3.onSpoorStatus += Spoor3_onSpoorStatus;
+            _sporenLijst.Add(spoor1);
+            _sporenLijst.Add(spoor2);
+            _sporenLijst.Add(spoor3);
+
+            
+
+            //Color green = Colors.Green;
+            //Spoor1_onSpoorStatus(green, "Spoor 1 is leeg.");
+            //Spoor2_onSpoorStatus(green, "Spoor 2 is leeg.");
+            //Spoor3_onSpoorStatus(green, "Spoor 3 is leeg.");
 
         }
 
@@ -126,13 +164,40 @@ namespace Breyne_Ward_WPF_Ev_Deel1
                 Trein treinOpSpoor = LijstTreinen[0];
                 treinOpSpoor = _mijnControleKamer.ControleerSporen(treinOpSpoor);
 
+                switch(treinOpSpoor.Spoor.Spoornr)
+                {
+                    case 1: tbSpoor1.Text = treinOpSpoor.Spoor.Scherm; break;
+                    case 2: tbSpoor2.Text = treinOpSpoor.Spoor.Scherm; break;
+                    case 3: tbSpoor3.Text = treinOpSpoor.Spoor.Scherm; break;
+                }
+                
+                LijstTreinen.RemoveAt(0);
+                RefreshTextBox();
 
 
             }
-            catch (Exception)
+            catch
             {
-
-                throw;
+                _teller += 1;
+                switch (_teller)
+                {
+                    case 1:
+                        MessageBox.Show("Aandacht aandacht: De laatste trein is het station binnengekomen. Het station gaat bijna sluiten.");
+                        break;
+                    case 2:
+                        MessageBox.Show("Aandacht aandacht: Het station gaat sluiten.");
+                        break;
+                    case 3:
+                        MessageBox.Show("Aandacht aandacht: Gelieve u naar de uitgang te begeven. Het station is gesloten!");
+                        _timer1.Stop();
+                        break;
+                    default:
+                        Console.WriteLine("Er gaat iets mis met de timers, gelieve de administrator te verwittigen.");
+                        tbSpoor1.Text = "Spoor 1 is leeg.";
+                        tbSpoor2.Text = "Spoor 2 is leeg.";
+                        tbSpoor3.Text = "Spoor 3 is leeg.";
+                        break;
+                }
             }
             
         }

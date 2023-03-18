@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="TreinID" />
           </Key>
-          <Property Name="TreinID" Type="int" Nullable="false" />
+          <Property Name="TreinID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="KentekenNummer" Type="int" Nullable="false" />
           <Property Name="Bestemming" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SpoorNummer" Type="int" Nullable="false" />
@@ -31,7 +31,7 @@
           <Key>
             <PropertyRef Name="TreinID" />
           </Key>
-          <Property Name="TreinID" Type="Int32" Nullable="false" />
+          <Property Name="TreinID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="KentekenNummer" Type="Int32" Nullable="false" />
           <Property Name="Bestemming" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SpoorNummer" Type="Int32" Nullable="false" />
@@ -41,7 +41,7 @@
           <Property Name="TicketPrijs" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="ConducAanwezig" Type="Boolean" />
         </EntityType>
-        <EntityContainer Name="WardStationDBEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="WardStationDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Treins" EntityType="Self.Trein" />
         </EntityContainer>
       </Schema>
@@ -49,7 +49,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WardStationDBModelStoreContainer" CdmEntityContainer="WardStationDBEntities1">
+        <EntityContainerMapping StorageEntityContainer="WardStationDBModelStoreContainer" CdmEntityContainer="WardStationDBEntities">
           <EntitySetMapping Name="Treins">
             <EntityTypeMapping TypeName="WardStationDBModel.Trein">
               <MappingFragment StoreEntitySet="Trein">

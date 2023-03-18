@@ -13,10 +13,10 @@ namespace Breyne_Ward_WPF_Ev_Deel1
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WardStationDBEntities1 : DbContext
+    public partial class WardStationDBEntities : DbContext
     {
-        public WardStationDBEntities1()
-            : base("name=WardStationDBEntities1")
+        public WardStationDBEntities()
+            : base("name=WardStationDBEntities")
         {
         }
     
